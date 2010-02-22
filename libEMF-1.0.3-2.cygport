@@ -1,0 +1,18 @@
+DESCRIPTION="A library for generating Enhanced Metafiles"
+HOMEPAGE="http://libemf.sourceforge.net/"
+SRC_URI="mirror://sourceforge/pstoedit/${P}.tar.gz"
+
+PKG_NAMES="${PN} ${PN}1 ${PN}-devel"
+libEMF_CONTENTS="--exclude=html usr/bin/*.exe usr/share/doc/"
+libEMF1_CONTENTS="usr/bin/*-1.dll"
+libEMF_devel_CONTENTS="usr/include/ usr/lib/ usr/share/doc/${PN}/html/"
+
+CYGCONF_ARGS="--enable-editing"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	dodir /usr/share/doc/${P}
+	cp -r ${S}/doc/html ${D}/usr/share/doc/${P}
+}
